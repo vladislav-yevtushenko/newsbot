@@ -22,7 +22,7 @@ jobs:
       - name: Build and Push the Docker image
         run: |
           IMAGE_TAG=$(git rev-parse --short HEAD)
-          REPOSITORY_URI=docker.io/${{ secrets.DOCKER_USERNAME }}/bayedilov-news-bot
+          export REPOSITORY_URI=docker.io/${{ secrets.DOCKER_USERNAME }}/bayedilov-news-bot
           docker build -t $REPOSITORY_URI:latest .
           docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
           docker push $REPOSITORY_URI:latest
