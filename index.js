@@ -9,12 +9,10 @@ const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 
 const bot = new TelegramBot(TELEGRAM_TOKEN, {polling: true});
 
-// Bot response to keywords
 bot.on("message", async (msg) => {
     const chatId = msg.chat.id;
     const keyword = msg.text?.trim();
 
-    // Responding with a search result if a keyword is provided
     if (keyword) {
         try {
             bot.sendMessage("Начинаю искать...");
