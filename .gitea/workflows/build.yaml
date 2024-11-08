@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -26,7 +26,14 @@ jobs:
           docker build -t $REPOSITORY_URI:latest .
           docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
           docker push $REPOSITORY_URI:latest
-          docker push $REPOSITORY_URI:$IMAGE_TAG
+          docker push $REPOSITORY_URI:$IMAGE_TAG- name: Update running container
+      - name : Update running container
+        run: |
+          CONTAINER_NAME=bayedilov-news-bot
+          docker pull $REPOSITORY_URI:latest
+          docker stop $CONTAINER_NAME || true
+          docker rm $CONTAINER_NAME || true
+          docker run -d --name $CONTAINER_NAME $REPOSITORY_URI:latest
       - name: Clean up Docker images and containers
         run: |
           docker system prune -f
