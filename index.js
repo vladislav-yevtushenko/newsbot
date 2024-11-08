@@ -6,7 +6,9 @@ dotenv.config();
 
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
-
+if (!TELEGRAM_TOKEN) {
+  throw new Error('TELEGRAM_TOKEN is not defined in the environment variables');
+}
 const bot = new TelegramBot(TELEGRAM_TOKEN, {polling: true});
 
 bot.on("message", async (msg) => {

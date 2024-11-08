@@ -19,15 +19,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build the Docker image
+      - name: Build and Push the Docker image
         run: |
           IMAGE_TAG=$(git rev-parse --short HEAD)
           REPOSITORY_URI=docker.io/${{ secrets.DOCKER_USERNAME }}/bayedilov-news-bot
           docker build -t $REPOSITORY_URI:latest .
           docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
-
-      - name: Push the Docker image
-        run: |
-          REPOSITORY_URI=docker.io/${{ secrets.DOCKER_USERNAME }}/bayedilov-news-bot
           docker push $REPOSITORY_URI:latest
           docker push $REPOSITORY_URI:$IMAGE_TAG
