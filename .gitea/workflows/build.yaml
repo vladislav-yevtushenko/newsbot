@@ -10,10 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clean up Docker images and containers
-        run: |
-          docker system prune -f
-          docker volume prune -f
       - name: Checkout repository
         uses: actions/checkout@v2
 
