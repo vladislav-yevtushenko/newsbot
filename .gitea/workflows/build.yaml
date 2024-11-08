@@ -9,6 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      REPOSITORY_URI: docker.io/${{ secrets.DOCKER_USERNAME }}/bayedilov-news-bot
+      IMAGE_TAG: ${{ github.sha }}
+      CONTAINER_NAME: bayedilov-news-bot
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,17 +24,16 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and Push the Docker image
+      - name: Build
         run: |
-          IMAGE_TAG=$(git rev-parse --short HEAD)
-          export REPOSITORY_URI=docker.io/${{ secrets.DOCKER_USERNAME }}/bayedilov-news-bot
           docker build -t $REPOSITORY_URI:latest .
           docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - name: Push to Docker Hub
+        run: |
           docker push $REPOSITORY_URI:latest
           docker push $REPOSITORY_URI:$IMAGE_TAG
       - name : Update running container
         run: |
-          CONTAINER_NAME=bayedilov-news-bot
           docker pull $REPOSITORY_URI:latest
           docker stop $CONTAINER_NAME || true
           docker rm $CONTAINER_NAME || true
