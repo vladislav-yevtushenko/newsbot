@@ -1,5 +1,4 @@
 name: Docker Build and Push
-run-name: ${{ gitea.actor }}/${{ gitea.repository }}/${{ gitea.branch }}/${{ gitea.run_number }}
 
 on:
   push:
@@ -22,8 +21,7 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          COMMIT_HASH=$(echo ${{ github.sha }} | cut -c 1-7)
-          IMAGE_TAG=build-$(echo ${{ github.run_id }} | awk -F":" '{print $2}')
+          IMAGE_TAG=$(git rev-parse --short HEAD)
           REPOSITORY_URI=docker.io/${{ secrets.DOCKER_USERNAME }}/bayedilov-news-bot
           docker build -t $REPOSITORY_URI:latest .
           docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
