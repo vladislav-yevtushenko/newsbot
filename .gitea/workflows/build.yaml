@@ -26,7 +26,7 @@ jobs:
           docker build -t $REPOSITORY_URI:latest .
           docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
           docker push $REPOSITORY_URI:latest
-          docker push $REPOSITORY_URI:$IMAGE_TAG- name: Update running container
+          docker push $REPOSITORY_URI:$IMAGE_TAG
       - name : Update running container
         run: |
           CONTAINER_NAME=bayedilov-news-bot
