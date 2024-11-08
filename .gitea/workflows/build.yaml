@@ -43,7 +43,7 @@ jobs:
             sleep 1
           done
  
-          docker run -d --name $CONTAINER_NAME $REPOSITORY_URI:latest -e TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }} -e NEWS_API_KEY=${{ secrets.NEWS_API_KEY }}
+          docker run -d --name $CONTAINER_NAME $REPOSITORY_URI:latest
       - name: Clean up Docker images and containers
         run: |
           docker system prune -f
