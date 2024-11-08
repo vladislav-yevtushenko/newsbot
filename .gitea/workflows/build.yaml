@@ -30,7 +30,7 @@ jobs:
 
       - name: Push the Docker image
         run: |
-          REPOSITORY_URI=docker.io/${{ secrets.DOCKER_USERNAME }}/botnews
+          REPOSITORY_URI=docker.io/${{ secrets.DOCKER_USERNAME }}/bayedilov-news-bot
           IMAGE_TAG=build-$(echo ${{ gitea.run_number }} | awk -F":" '{print $2}')
           docker push $REPOSITORY_URI:latest
           docker push $REPOSITORY_URI:$IMAGE_TAG
