@@ -3,26 +3,34 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "jest": {
     "testEnvironment": "node",
     "transform": {}
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "ts-node src/Bot.ts",
+    "scheduler": "ts-node src/Scheduler.ts",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
+    "@types/node-cron": "^3.0.11",
     "dotenv": "^16.4.5",
+    "grammy": "^1.31.1",
+    "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",
-    "node-telegram-bot-api": "^0.66.0"
+    "pg": "^8.13.1",
+    "reflect-metadata": "^0.2.2",
+    "ts-newsapi": "^1.0.2",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "jest": "^29.7.0",
-    "nock": "^13.5.5"
+    "@types/node": "^22.9.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3"
   }
 }

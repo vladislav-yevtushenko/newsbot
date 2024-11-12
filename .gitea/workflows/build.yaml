@@ -37,13 +37,17 @@ jobs:
           docker pull $REPOSITORY_URI:latest
           docker stop $CONTAINER_NAME || true
           docker rm $CONTAINER_NAME || true
- 
+          
           while [ "$(docker ps -a -q -f name=$CONTAINER_NAME)" ]; do
             echo "Waiting for container $CONTAINER_NAME to be removed..."
             sleep 1
           done
- 
-          docker run -d -e TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }} -e NEWS_API_KEY=${{ secrets.NEWS_API_KEY }} --name $CONTAINER_NAME $REPOSITORY_URI:latest
+          
+          docker run -d \
+          -e TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }} \ 
+          -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
+          -e NEWS_API_KEY=${{ secrets.NEWS_API_KEY }} \
+          --name $CONTAINER_NAME $REPOSITORY_URI:latest
 
       - name: Clean up Docker images and containers
         run: |
