@@ -1,12 +1,12 @@
 import {Context} from "grammy";
 import {userStates} from "../utils/userStates";
 
-export const startCommand = (ctx: Context) => {
+export const startCommand = async (ctx: Context) => {
     const {chat} = ctx;
     if (chat) {
         userStates.set(chat.id, {action: null});
-        ctx.reply("Welcome! Up and running.");
+        await ctx.reply("Welcome! Up and running.");
     } else {
-        ctx.reply("This command only works in a chat.");
+        await ctx.reply("This command only works in a chat.");
     }
 };

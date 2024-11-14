@@ -1,6 +1,8 @@
 // src/entity/UserSetting.ts
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
+import {Job} from "../../scheduler/Job";
+
 @Entity()
 export class UserSettings {
     @PrimaryGeneratedColumn()
@@ -16,8 +18,5 @@ export class UserSettings {
     username!: string;
 
     @Column("jsonb")
-    keywords!: string[];
-
-    @Column("jsonb")
-    scheduled_time!: string[];
+    jobs!: Job[];
 }

@@ -1,6 +1,6 @@
-import {UserSettings} from "../entity/UserSettings";
+import {UserSettings} from "./entity/UserSettings";
 import {Context} from "grammy";
-import {AppDataSource} from "../appDataSource";
+import {AppDataSource} from "./appDataSource";
 
 export const saveUserSettings = async (userSetting: UserSettings, ctx: Context, successMessage: string) => {
     const userSettingRepository = AppDataSource.getRepository(UserSettings);

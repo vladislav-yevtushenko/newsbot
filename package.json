@@ -8,8 +8,7 @@
     "transform": {}
   },
   "scripts": {
-    "start": "ts-node src/Bot.ts",
-    "scheduler": "ts-node src/Scheduler.ts",
+    "start": "ts-node src/Main.ts",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [],

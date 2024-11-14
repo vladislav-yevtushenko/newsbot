@@ -8,5 +8,4 @@ RUN npm install
 
 COPY . .
 
-CMD ["sh", "-c", "npm start && npm run scheduler"]
-
+CMD ["npm", "start"]
