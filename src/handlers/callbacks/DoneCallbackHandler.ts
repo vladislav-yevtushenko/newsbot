@@ -11,7 +11,7 @@ export const doneCallbackHandler = async (ctx: Context) => {
     if (job) {
         const userSetting = await findOrCreateUserSetting(chat!.id, from!.id, from!.username!);
         userSetting.jobs.push(job);
-        await saveUserSettings(userSetting, ctx, `Job scheduled:\n "${job.toString()}"\n`);
+        await saveUserSettings(userSetting, ctx, `Job scheduled:\n${job.toString()}\n`);
         addJobToScheduler(job);
         deleteJob(chat!.id, from!.id);
     } else {

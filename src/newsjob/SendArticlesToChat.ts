@@ -1,5 +1,5 @@
-import {searchNews} from "./api/searchNews";
 import {bot} from "../TelegramBot";
+import {searchNews} from "./api/NewsData";
 
 
 export const sendArticlesToChat = (chatId: number, keyword: string) => async () => {
@@ -7,7 +7,7 @@ export const sendArticlesToChat = (chatId: number, keyword: string) => async () 
     if (articles.length > 0) {
         const results = articles
             .map((article, index) => {
-                return `${index + 1}. [${article.title}](${article.url})\n${article.description}\n`;
+                return `${index + 1}. [${article.title}](${article.link})\n${article.description}\n`;
             })
             .join("\n");
         await bot.api.sendMessage(

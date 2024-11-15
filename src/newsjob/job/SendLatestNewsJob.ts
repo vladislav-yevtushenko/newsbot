@@ -35,7 +35,7 @@ export class SendLatestNewsJob implements Job {
     }
 
     public toString(): string {
-        return `Bot will send articles by query: ${this.newsQuery} for user: ${this.userId} chatId: ${this.chatId} cronTime: ${this.time}`;
+        return `Bot will send articles:\nquery: ${this.joinNewsQuery(this.newsQuery)}\nWhen: ${this.time}`;
     }
 
     public addNewsQuery(keyword: string) {

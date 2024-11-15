@@ -11,6 +11,7 @@ export const setupKeywords = async (ctx: Context) => {
     const job = getJob(chat!.id, from!.id);
     const inlineKeyBoard = new InlineKeyboard()
         .text("Add more", NEWS_JOB_ADD_KEYWORDS_INLINE_KEYBOARD_CALLBACK)
+        .row()
         .text("Done", NEWS_JOB_ADD_KEYWORDS_DONE_INLINE_KEYBOARD_CALLBACK)
         .text("Cancel", RESET_STATE_CALLBACK)
     if (job) {

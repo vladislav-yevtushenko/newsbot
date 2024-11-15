@@ -17,7 +17,9 @@ export const setupSendLatestNewsJob = async (ctx: Context) => {
 
     const inlineKeyboard = new InlineKeyboard()
         .text("Add keywords", NEWS_JOB_ADD_KEYWORDS_INLINE_KEYBOARD_CALLBACK)
+        .row()
         .text("Add time slots", NEWS_JOB_ADD_TIMESLOT_INLINE_KEYBOARD_CALLBACK)
+        .row()
         .text("Done", NEWS_JOB_DONE_CALLBACK);
 
     userStates.set(ctx.chat!.id, {action: NEWS_JOB_AWAITING_NEW_JOB_STATE});
