@@ -1,7 +1,5 @@
-// src/entity/UserSetting.ts
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
-
-import {Job} from "../../scheduler/Job";
+import type {Job} from "../../scheduler/Job";
 
 @Entity()
 export class UserSettings {

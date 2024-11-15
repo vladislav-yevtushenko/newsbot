@@ -17,6 +17,8 @@ import {resetStateCallbackHandler} from "./handlers/callbacks/ResetStateCallback
 import {addNewKeywordCallbackHandler} from "./newsjob/handlers/callback/addNewKeywordCallbackHandler";
 import {addTimeSlotCallbackHandler} from "./newsjob/handlers/callback/addTimeSlotCallbackHandler";
 import {doneCallbackHandler} from "./handlers/callbacks/DoneCallbackHandler";
+import {listJobsCommand} from "./commands/listJobsCommand";
+import {deleteJobCallbackHandler} from "./handlers/callbacks/DeleteJobCallbackHandler";
 
 dotenv.config();
 
@@ -30,6 +32,7 @@ const bot = new Bot(TELEGRAM_TOKEN);
 const commands = [
     {command: "/start", description: "Start the bot"},
     {command: "/add_job", description: "Add a new job"},
+    {command: "/list_jobs", description: "List all jobs"}
 ];
 
 bot.api.setMyCommands(commands).then(() => {
@@ -37,13 +40,15 @@ bot.api.setMyCommands(commands).then(() => {
 })
 bot.command("start", startCommand);
 bot.command("add_job", addNewJobCommand);
+bot.command("list_jobs", listJobsCommand);
 bot.on("message:text", messageHandler);
 bot.callbackQuery(NEWS_JOB_ADD_NEW_JOB_INLINE_KEYBOARD_CALLBACK, setupSendLatestNewsJob)
 bot.callbackQuery(NEWS_JOB_ADD_KEYWORDS_INLINE_KEYBOARD_CALLBACK, addNewKeywordCallbackHandler)
 bot.callbackQuery(NEWS_JOB_ADD_TIMESLOT_INLINE_KEYBOARD_CALLBACK, addTimeSlotCallbackHandler)
 bot.callbackQuery(NEWS_JOB_DONE_CALLBACK, doneCallbackHandler)
 bot.callbackQuery(RESET_STATE_CALLBACK, resetStateCallbackHandler)
-bot.callbackQuery(NEWS_JOB_ADD_KEYWORDS_DONE_INLINE_KEYBOARD_CALLBACK, addTimeSlotCallbackHandler)
+bot.callbackQuery(NEWS_JOB_ADD_KEYWORDS_DONE_INLINE_KEYBOARD_CALLBACK, doneCallbackHandler)
 bot.callbackQuery(NEWS_JOB_ADD_TIMESLOT_DONE_INLINE_KEYBOARD_CALLBACK, doneCallbackHandler)
+bot.callbackQuery(/^delete_job:\d+/, deleteJobCallbackHandler)
 
 export {bot};

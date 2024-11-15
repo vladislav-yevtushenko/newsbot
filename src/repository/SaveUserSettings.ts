@@ -6,6 +6,7 @@ export const saveUserSettings = async (userSetting: UserSettings, ctx: Context, 
     const userSettingRepository = AppDataSource.getRepository(UserSettings);
 
     try {
+
         await userSettingRepository.save(userSetting);
         await ctx.reply(successMessage);
     } catch (err) {

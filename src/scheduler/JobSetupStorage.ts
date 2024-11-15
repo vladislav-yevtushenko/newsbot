@@ -15,5 +15,5 @@ export const deleteJob = (chatId: number, userId: number): void => {
 };
 
 const getJobKey = (chatId: number, userId: number): string => {
-    return `${chatId}:${userId}`;
+    return `${chatId}${userId}`;
 };

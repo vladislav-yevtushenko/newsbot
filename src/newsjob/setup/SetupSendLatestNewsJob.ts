@@ -11,7 +11,7 @@ import {setJob} from "../../scheduler/JobSetupStorage";
 
 export const setupSendLatestNewsJob = async (ctx: Context) => {
     const {chat, from} = ctx;
-    const job = new SendLatestNewsJob(from!.id, chat!.id, "", []);
+    const job = new SendLatestNewsJob(from!.id, chat!.id, "", new Set());
 
     setJob(chat!.id, from!.id, job);
 
