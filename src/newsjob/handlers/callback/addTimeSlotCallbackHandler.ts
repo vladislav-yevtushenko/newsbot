@@ -10,12 +10,11 @@ export const setUserStateToAwaitingTimeSlots = (chatId: number) => {
 export const addTimeSlotCallbackHandler = async (ctx: Context) => {
     setUserStateToAwaitingTimeSlots(ctx.chat!.id);
     const inlineKeyboard = new Keyboard()
-        .text("09:00")
-        .text("12:00")
-        .text("14:00")
-        .text("18:00")
-        .text("22:00")
-        .text("00:00")
+        .text("🕘 09:00")
+        .text("🕛 12:00")
+        .text("🕑 14:00")
+        .text("🕕 18:00")
+        .resized(true)
         .oneTime()
 
     await ctx.reply(NEWS_JOB_ADD_TIMESLOT_MESSAGE, {

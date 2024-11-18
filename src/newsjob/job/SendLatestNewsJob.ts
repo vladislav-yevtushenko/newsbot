@@ -69,7 +69,7 @@ export class SendLatestNewsJob implements Job {
     }
 
     public print(): string {
-        return `Bot will send articles:\nquery: ${this.joinNewsQuery(this.newsQuery)}\nWhen: ${this.time}`;
+        return `News:\nquery: ${this.joinNewsQuery(this.newsQuery)}\nWhen: ${this.time}`;
     }
 
     public addNewsQuery(keyword: string) {
