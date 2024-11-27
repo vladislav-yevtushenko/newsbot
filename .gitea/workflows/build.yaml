@@ -11,7 +11,7 @@ jobs:
 
     env:
       REPOSITORY_URI: docker.io/${{ secrets.DOCKER_USERNAME }}/bayedilov-news-bot
-      IMAGE_TAG: ${{ github.sha }}
+      IMAGE_TAG: $(git rev-parse --short HEAD)
       CONTAINER_NAME: bayedilov-news-bot
 
     steps:
